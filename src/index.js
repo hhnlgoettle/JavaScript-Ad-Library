@@ -1,4 +1,3 @@
-const InteractionRewardingAds = {
-};
+const InteractionRewardingAds = require('./InteractionRewardingAds');
 
-module.exports = InteractionRewardingAds;
+module.exports = new InteractionRewardingAds();
