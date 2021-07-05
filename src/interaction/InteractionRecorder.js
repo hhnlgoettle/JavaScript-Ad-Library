@@ -1,9 +1,15 @@
 const InteractionRecorder = class InteractionRecorder {
-  constructor() {
+  /**
+   *
+   * @param {Timer} timer
+   */
+  constructor(timer) {
+    this.timer = timer;
     this.interactions = [];
   }
 
-  recordInteraction({timestamp, posX, posY, target}) {
+  recordInteraction({posX, posY, target}) {
+    const timestamp = this.timer.getPassedTime();
     this.interactions.push({timestamp, posX, posY, target});
   }
   getAllInteractions() {

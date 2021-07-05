@@ -6,7 +6,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
   constructor() {
     this.timer = new Timer();
     this.stats = new StatsManager(this);
-    this.recorder = new InteractionRecorder();
+    this.recorder = new InteractionRecorder(this.timer);
   }
 
   init({desiredDuration, desiredInteractionCount}) {
