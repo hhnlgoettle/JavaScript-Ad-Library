@@ -17,10 +17,12 @@ const InteractionRecorderOverlay = class InteractionRecorderOverlay {
   inject() {
     document.addEventListener('click', data => {
       const interaction = {};
-      interaction.target = data.target;
+      interaction.target = JSON.stringify(data.target);
       interaction.posX = data.x;
       interaction.posY = data.y;
       this.recorder.recordInteraction(interaction);
     });
   }
 };
+
+module.exports = InteractionRecorderOverlay;
