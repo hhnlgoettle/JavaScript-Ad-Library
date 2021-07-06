@@ -11,6 +11,9 @@ These interactions are then reported to the Ad Library at the end of the ads lif
 - Clone the repo
 - run `npm install` to install dependencies
 
+To run gulp tasks install gulp
+- run `npm install --global gulp-cli`
+
 ## Build
 
 - run `npm run build`
