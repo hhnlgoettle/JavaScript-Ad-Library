@@ -58,7 +58,6 @@ describe('StatsManager Unit Test', function() {
       assert.strictEqual(true, buildStats.hasEarnedReward);
       assert.strictEqual(0, buildStats.interactionCount);
       assert.strictEqual(0, buildStats.rewardPercentage);
-      assert.strictEqual(0, buildStats.duration);
     });
 
     it('builds stats with interactions 10, 20 desired', async function () {
