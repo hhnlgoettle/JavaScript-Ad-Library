@@ -74,7 +74,8 @@ describe('StatsManager Unit Test', function() {
             timestamp: ctx.timer.getPassedTime(),
             posX: Math.round(Math.random()*100),
             posY: Math.round(Math.random()*100),
-            target: "target: "+ctx.recorder.getAllInteractions().length
+            target: "target: "+ctx.recorder.getAllInteractions().length,
+            isValid: true,
           });
           if(ctx.recorder.getAllInteractions().length >= 10) {
             resolve(true);
@@ -104,7 +105,8 @@ describe('StatsManager Unit Test', function() {
             timestamp: ctx.timer.getPassedTime(),
             posX: Math.round(Math.random()*100),
             posY: Math.round(Math.random()*100),
-            target: "target: "+ctx.recorder.getAllInteractions().length
+            target: "target: "+ctx.recorder.getAllInteractions().length,
+            isValid: true,
           });
           if(ctx.recorder.getAllInteractions().length >= 7) {
             resolve(true);
@@ -134,7 +136,8 @@ describe('StatsManager Unit Test', function() {
             timestamp: ctx.timer.getPassedTime(),
             posX: Math.round(Math.random()*100),
             posY: Math.round(Math.random()*100),
-            target: "target: "+ctx.recorder.getAllInteractions().length
+            target: "target: "+ctx.recorder.getAllInteractions().length,
+            isValid: true,
           });
           if(ctx.recorder.getAllInteractions().length >= 1) {
             resolve(true);
