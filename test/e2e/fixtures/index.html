@@ -7,6 +7,28 @@
     <script src="js/release.js"></script>
 </head>
 <body>
-<h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <div id="test-div">SomeContent</div>
 </body>
+<script>
+    let desiredDuration = 30, desiredInteractionCount = 0, autoStart = true;
+    if (location.search.length) {
+      const params = location.search.substr(1).split("&");
+      params.forEach(p => {
+        const tmp = p.split('=');
+        switch(tmp[0].toLowerCase()) {
+          case 'desiredDuration'.toLowerCase():
+            desiredDuration = Number(tmp[1]);
+            break;
+          case 'desiredInteractionCount'.toLowerCase():
+            desiredInteractionCount = Number(tmp[1]);
+            break;
+          case 'autoStart'.toLowerCase():
+            autoStart = (tmp[1] !== 'false' && tmp[0] !== '0');
+            break;
+        }
+      });
+    }
+    InteractionRewardingAds.init({desiredDuration, desiredInteractionCount, autoStart});
+</script>
 </html>
