@@ -36,7 +36,7 @@ const StatsManager = class StatsManager {
   buildStats() {
     if (this.stats == null) this.initStatsObj({});
     this.stats.duration = this.manager.timer.getPassedTime();
-    this.stats.hasEarnedReward = this.stats.duration >= this.stats.desiredDuration;
+    this.stats.hasEarnedReward = this.stats.duration >= (this.stats.desiredDuration);
     this.stats.allInteractions = this.manager.recorder.getAllInteractions();
     this.stats.validInteractions = this.manager.recorder.getValidInteractions();
     this.stats.interactionCount = this.stats.validInteractions.length;

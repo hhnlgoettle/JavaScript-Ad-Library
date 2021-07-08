@@ -25,17 +25,17 @@ describe('StatsManager Unit Test', function() {
     it('inits the stats object with custom values', function () {
       const manager = new InteractionRewardingAds();
       const stats = manager.stats;
-      stats.initStatsObj({desiredInteractionCount: 10, desiredDuration: 1500});
+      stats.initStatsObj({desiredInteractionCount: 10, desiredDuration: 15});
       assert.strictEqual(10, stats.stats.desiredInteractionCount);
-      assert.strictEqual(1500, stats.stats.desiredDuration);
+      assert.strictEqual(15, stats.stats.desiredDuration);
     });
 
     it('inits the stats object with custom decimal values', function () {
       const manager = new InteractionRewardingAds();
       const stats = manager.stats;
-      stats.initStatsObj({desiredInteractionCount: 10.4, desiredDuration: 1500.7});
+      stats.initStatsObj({desiredInteractionCount: 10.4, desiredDuration: 15.2});
       assert.strictEqual(10, stats.stats.desiredInteractionCount);
-      assert.strictEqual(1501, stats.stats.desiredDuration);
+      assert.strictEqual(15, stats.stats.desiredDuration);
     });
 
 
@@ -94,7 +94,7 @@ describe('StatsManager Unit Test', function() {
     it('builds stats with more interaction than desired', async function () {
       const manager = new InteractionRewardingAds();
       const stats = manager.stats;
-      // desiredDuration: 300ms
+      // desiredDuration: 20ms
       stats.initStatsObj({desiredInteractionCount: 5, desiredDuration: 20});
 
       const ctx = manager;

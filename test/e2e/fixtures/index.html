@@ -12,14 +12,14 @@
     <div id="valid-div" onclick="onClickIsValid(event)" style="background: grey; width: 100px; height: 100px;">SomeContent</div>
 </body>
 <script>
-    let desiredDuration = 30, desiredInteractionCount = 0, autoStart = true;
+    let desiredDurationMillis = 30, desiredInteractionCount = 0, autoStart = true;
     if (location.search.length) {
       const params = location.search.substr(1).split("&");
       params.forEach(p => {
         const tmp = p.split('=');
         switch(tmp[0].toLowerCase()) {
-          case 'desiredDuration'.toLowerCase():
-            desiredDuration = Number(tmp[1]);
+          case 'desiredDurationMillis'.toLowerCase():
+            desiredDurationMillis = Number(tmp[1]);
             break;
           case 'desiredInteractionCount'.toLowerCase():
             desiredInteractionCount = Number(tmp[1]);
@@ -30,12 +30,12 @@
         }
       });
     }
-    InteractionRewardingAds.init({desiredDuration, desiredInteractionCount, autoStart});
+    InteractionRewardingAds.init({desiredDurationMillis, desiredInteractionCount, autoStart});
 </script>
 
 <script>
     function onClickIsValid(event) {
-      event.isValid = true;
+      InteractionRewardingAds.isValidEvent(event);
     }
 </script>
 </html>
