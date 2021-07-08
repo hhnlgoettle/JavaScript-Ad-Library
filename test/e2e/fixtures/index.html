@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Hello World</h1>
-    <div id="test-div">SomeContent</div>
+    <div id="invalid-div" style="background: grey; width: 100px; height: 100px;">SomeContent</div>
+    <div id="valid-div" onclick="onClickIsValid(event)" style="background: grey; width: 100px; height: 100px;">SomeContent</div>
 </body>
 <script>
     let desiredDuration = 30, desiredInteractionCount = 0, autoStart = true;
@@ -30,5 +31,11 @@
       });
     }
     InteractionRewardingAds.init({desiredDuration, desiredInteractionCount, autoStart});
+</script>
+
+<script>
+    function onClickIsValid(event) {
+      event.isValid = true;
+    }
 </script>
 </html>
