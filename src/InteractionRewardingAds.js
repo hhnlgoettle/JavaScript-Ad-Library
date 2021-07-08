@@ -13,8 +13,11 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     }
   }
 
-  init({desiredDuration, desiredInteractionCount}) {
-    this.stats.initStatsObj({desiredDuration, desiredInteractionCount})
+  init({desiredDuration, desiredInteractionCount, autoStart= false} = {}) {
+    this.stats.initStatsObj({desiredDuration, desiredInteractionCount});
+    if(autoStart !== false) {
+      this.start();
+    }
   }
   start() {
     this.timer.start();
