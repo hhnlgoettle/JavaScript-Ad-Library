@@ -4,7 +4,7 @@
   "description": "JavaScript Library for using Interaction Rewarding Ads",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:unit": "mocha --recursive ./test/unit/",
     "test:integration": "mocha --recursive ./test/integration/",
     "test:e2e": "npm run build && gulp test:e2e",
