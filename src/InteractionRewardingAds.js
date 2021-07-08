@@ -2,6 +2,7 @@ const Timer = require('./timer/Timer');
 const StatsManager = require('./stats/StatsManager');
 const InteractionRecorder = require('./interaction/InteractionRecorder');
 const InteractionRecorderOverlay = require('./ui/InteractionRecorderOverlay');
+const Countdown = require('./ui/Countdown');
 
 const InteractionRewardingAds = class InteractionRewardingAds {
   constructor() {
@@ -9,7 +10,8 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     this.stats = new StatsManager(this);
     this.recorder = new InteractionRecorder(this.timer);
     this.ui = {
-      clickOverlay: new InteractionRecorderOverlay(this.recorder)
+      clickOverlay: new InteractionRecorderOverlay(this.recorder),
+      countdown: new Countdown(this.timer)
     }
   }
 
@@ -30,8 +32,11 @@ const InteractionRewardingAds = class InteractionRewardingAds {
    * start timer and inject clickOverlay
    */
   start() {
-    this.timer.start();
+    const countdown = Math.round(this.stats.stats.desiredDuration / 1000);
+    console.log(countdown)
+    this.timer.start(countdown);
     this.ui.clickOverlay.inject();
+    this.ui.countdown.inject();
   }
 
   /**
