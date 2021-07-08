@@ -17,10 +17,10 @@ const Timer = class Timer {
   };
 
   constructor(countdown = 30) {
-    this.countdown = countdown;
     this.startedAtMillis = this.getCurrentMillis();;
     this.onOneSecondHandler = null;
     this.cb = {};
+    this.countdown = countdown;
   }
 
   /**
@@ -36,7 +36,10 @@ const Timer = class Timer {
     if(eventKey == null || typeof eventKey !== 'string') throw new Error('invalid eventKey: '+eventKey)
     if(cb == null) throw new Error('cb cannot be null');
     if(typeof cb !== "function") throw new Error("cb is not a function");
-    this.cb[eventKey] = cb
+    if(this.cb[eventKey] == null) {
+      this.cb[eventKey] = [];
+    }
+    this.cb[eventKey].push(cb);
   }
 
   /**
@@ -54,17 +57,23 @@ const Timer = class Timer {
    */
   emit(eventKey, data) {
     if (this.cb[eventKey]) {
-      this.cb[eventKey](data)
+      try {
+        this.cb[eventKey].forEach(cb => cb(data));
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 
   /**
-   * start the timer
+   * start the timer with countdown
+   * @param {Number} countdown - in seconds
    */
-  start() {
+  start(countdown = null) {
+    if(countdown) {this.countdown = countdown;}
     this.startedAtMillis = this.getCurrentMillis();
     const context = this;
-    this.onOneSecondHandler = setTimeout(function() {context.onOneSecond()}, 1000);
+    this.onOneSecondHandler = setInterval(function() {context.onOneSecond()}, 1000);
   }
 
   /**
