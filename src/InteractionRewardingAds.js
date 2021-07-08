@@ -21,6 +21,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
   }
   start() {
     this.timer.start();
+    this.ui.clickOverlay.inject();
   }
 };
 
