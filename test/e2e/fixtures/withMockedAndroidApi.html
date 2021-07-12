@@ -1,0 +1,42 @@
+<!-- test/fixtures/index.html -->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>End-to-End Testing</title>
+    <script src="js/release.js"></script>
+    <script src="ira/androidIRA.js"></script>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <div id="invalid-div" style="background: grey; width: 100px; height: 100px;">SomeContent</div>
+    <div id="valid-div" onclick="onClickIsValid(event)" style="background: grey; width: 100px; height: 100px;">SomeContent</div>
+</body>
+<script>
+    let desiredDurationMillis = 30, desiredInteractionCount = 0, autoStart = true;
+    if (location.search.length) {
+      const params = location.search.substr(1).split("&");
+      params.forEach(p => {
+        const tmp = p.split('=');
+        switch(tmp[0].toLowerCase()) {
+          case 'desiredDurationMillis'.toLowerCase():
+            desiredDurationMillis = Number(tmp[1]);
+            break;
+          case 'desiredInteractionCount'.toLowerCase():
+            desiredInteractionCount = Number(tmp[1]);
+            break;
+          case 'autoStart'.toLowerCase():
+            autoStart = (tmp[1] !== 'false' && tmp[0] !== '0');
+            break;
+        }
+      });
+    }
+    InteractionRewardingAds.init({desiredDurationMillis, desiredInteractionCount, autoStart});
+</script>
+
+<script>
+    function onClickIsValid(event) {
+      InteractionRewardingAds.isValidEvent(event);
+    }
+</script>
+</html>

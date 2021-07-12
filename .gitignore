@@ -111,3 +111,5 @@ dist
 
 # build files
 /build
+
+/androidApi/build

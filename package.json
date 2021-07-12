@@ -7,8 +7,9 @@
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:unit": "mocha --recursive ./test/unit/",
     "test:integration": "mocha --recursive ./test/integration/",
-    "test:e2e": "npm run build && gulp test:e2e",
+    "test:e2e": "npm run build && npm run build:api && gulp test:e2e",
     "build": "browserify -e src/index.js --s InteractionRewardingAds -o build/release.js",
+    "build:api": "browserify -e androidApi/AndroidIRA.js --s AndroidIRA -o androidApi/build/androidIRA.js",
     "lint": "./node_modules/.bin/eslint src/"
   },
   "author": "Luca Göttle <lgoettle@stud.hs-heilbronn.de>",

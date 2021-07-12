@@ -12,6 +12,7 @@ gulp.task('http:serve', (done) => {
   const app = connect();
   app.use("/", serveStatic('test/e2e/fixtures'))
   app.use("/js", serveStatic('build/'));
+  app.use("/ira", serveStatic('androidApi/build/'));
   server = http.createServer(app).listen(9000, done);
   done();
 });
