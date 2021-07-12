@@ -48,10 +48,10 @@ describe('timer Unit Test', function() {
     it('returns passed time since timer started', async function () {
       const timer = new Timer(30);
       const promise = new Promise(resolve => {
+        timer.start();
         timer.on(timer.event.onOneSecondPassed, function (data) {
           resolve(timer.getPassedTime())
         });
-        timer.start();
       });
       const result = await promise;
       assert.strictEqual(true, result >= 1000)
