@@ -70,7 +70,7 @@ const Timer = class Timer {
    * @param {Number} countdown - in seconds
    */
   start(countdown = null) {
-    if(countdown) {this.countdown = countdown;}
+    if(countdown || countdown === 0) {this.countdown = countdown;}
     this.startedAtMillis = this.getCurrentMillis();
     const context = this;
     this.onOneSecondHandler = setInterval(function() {context.onOneSecond()}, 1000);
@@ -82,6 +82,10 @@ const Timer = class Timer {
    */
   getPassedTime() {
     return this.getCurrentMillis() - this.startedAtMillis;
+  }
+
+  getCountdownTime() {
+    return this.countdown;
   }
 
   /**
