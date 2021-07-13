@@ -27,13 +27,13 @@ const Countdown = class Countdown {
 
 
 
-  inject() {
+  inject(parent) {
     try {
       this.elem = document.createElement('div');
       this.elem.id = "ira-txt-countdown";
       this.applyStyle(this.elem);
       this.subscribeToTimerEvents(this.elem);
-      document.body.appendChild(this.elem);
+      parent.appendChild(this.elem);
     } catch (err) {
       console.error(err);
     }
@@ -77,9 +77,10 @@ const Countdown = class Countdown {
    * @param {HTMLDivElement} elem
    */
   applyStyle(elem) {
-    elem.style.position = 'absolute';
-    elem.style.top = "2vh";
-    elem.style.right = "2vw";
+    elem.style.fontFamily = "'Open Sans',Arial,sans-serif";
+    elem.style.marginRight = "clamp(3px, 2vw, 20px)";
+    elem.style.display = "table-cell";
+    elem.style.verticalAlign = "middle";
   }
 };
 

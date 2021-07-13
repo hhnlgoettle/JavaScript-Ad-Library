@@ -18,7 +18,7 @@ describe('Countdown', function() {
     it('should update text displayed', async function(done) {
       await browser.url('/?desiredDurationMillis=15000&autoStart=true');
       const result = await browser.execute(() => {
-        InteractionRewardingAds.ui.countdown.setCountdownText("Custom Countdown Text {{timeLeft}}")
+        InteractionRewardingAds.ui.countdownContainer.countdown.setCountdownText("Custom Countdown Text {{timeLeft}}")
         return new Promise((resolve) => {
           InteractionRewardingAds.timer.on(InteractionRewardingAds.timer.event.onOneSecondPassed, function () {
             resolve(document.getElementById("ira-txt-countdown").innerHTML)
@@ -43,7 +43,7 @@ describe('Countdown', function() {
     it('should display custom ready text', async function(done) {
       await browser.url('/?desiredDurationMillis=1000&autoStart=true');
       const result = await browser.execute(() => {
-        InteractionRewardingAds.ui.countdown.setReadyText("Custom Ready Text")
+        InteractionRewardingAds.ui.countdownContainer.countdown.setReadyText("Custom Ready Text")
         return new Promise((resolve) => {
           InteractionRewardingAds.timer.on(InteractionRewardingAds.timer.event.onCountdownIsZero, function () {
             resolve(document.getElementById("ira-txt-countdown").innerHTML)

@@ -2,7 +2,8 @@ const Timer = require('./timer/Timer');
 const StatsManager = require('./stats/StatsManager');
 const InteractionRecorder = require('./interaction/InteractionRecorder');
 const InteractionRecorderOverlay = require('./ui/InteractionRecorderOverlay');
-const Countdown = require('./ui/Countdown');
+const CloseWarningModal = require('./ui/CloseWarningModal');
+const CountdownContainer = require('./ui/CountdownContainer');
 
 const InteractionRewardingAds = class InteractionRewardingAds {
   constructor() {
@@ -11,8 +12,10 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     this.recorder = new InteractionRecorder(this.timer);
     this.ui = {
       clickOverlay: new InteractionRecorderOverlay(this.recorder),
-      countdown: new Countdown(this.timer)
-    }
+      countdownContainer: new CountdownContainer(this),
+      modal: new CloseWarningModal(this),
+    };
+    this.api = null;
   }
 
   /**
@@ -23,6 +26,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
    */
   init({desiredDurationMillis, desiredInteractionCount, autoStart= true} = {}) {
     this.stats.initStatsObj({desiredDuration: desiredDurationMillis, desiredInteractionCount});
+    this.getAndroidApi();
     if(autoStart !== false) {
       this.start();
     }
@@ -33,10 +37,27 @@ const InteractionRewardingAds = class InteractionRewardingAds {
    */
   start() {
     const countdown = Math.round(this.stats.stats.desiredDuration / 1000);
-    console.log(countdown)
     this.timer.start(countdown);
     this.ui.clickOverlay.inject();
-    this.ui.countdown.inject();
+    this.ui.countdownContainer.inject();
+    this.ui.modal.inject();
+    this.api.onStart();
+  }
+
+  getAndroidApi() {
+    try {
+      this.api = AndroidIRA;
+    } catch (err) {
+      console.error("android api not available");
+    }
+  }
+
+  close() {
+    this.api.onClose(this.stats.getStats())
+  }
+
+  closeOnError(error) {
+    this.api.onCloseOnError(error.message, this.stats.getStats());
   }
 
   /**
