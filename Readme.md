@@ -29,6 +29,17 @@ To run unit tests exclusively, run `npm run test:unit`
 
 To run integration tests exclusively, run `npm run test:integration`
 
+To run end-to-end tests exclusively, run `npm run test:e2e`
+
+# Deployment 
+
+Note: This requires you to have ssh key stored on your machine to access user ira on trustmeimansoftware.engineer
+This further requires you to have rsync or a compatible tool installed on your machine.
+
+To deploy run `npm run deploy`.
+
+The deployed version can be accessed under `cdn.trustmeimansoftware.engineer/ira/release.js`
+
 ## License
 
 The license can be found under `LICENSE`.
