@@ -10,7 +10,8 @@
     "test:e2e": "npm run build && npm run build:api && gulp test:e2e",
     "build": "gulp browserify",
     "build:api": "browserify -e androidApi/AndroidIRA.js --s AndroidIRA -o androidApi/build/androidIRA.js",
-    "lint": "./node_modules/.bin/eslint src/"
+    "lint": "./node_modules/.bin/eslint src/",
+    "deploy": "rsync -aP build/ ira@trustmeimansoftware.engineer:/home/ira/cdn/www/ira/"
   },
   "author": "Luca Göttle <lgoettle@stud.hs-heilbronn.de>",
   "license": "MIT",
