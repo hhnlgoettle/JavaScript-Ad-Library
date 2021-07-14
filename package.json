@@ -8,7 +8,7 @@
     "test:unit": "mocha --recursive --exit ./test/unit/",
     "test:integration": "mocha --recursive ./test/integration/",
     "test:e2e": "npm run build && npm run build:api && gulp test:e2e",
-    "build": "browserify -e src/index.js --s InteractionRewardingAds -o build/release.js",
+    "build": "gulp browserify",
     "build:api": "browserify -e androidApi/AndroidIRA.js --s AndroidIRA -o androidApi/build/androidIRA.js",
     "lint": "./node_modules/.bin/eslint src/"
   },
@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "@wdio/cli": "^7.7.4",
-    "browserify": "^17.0.0"
+    "browserify": "^17.0.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "devDependencies": {
     "@wdio/junit-reporter": "^7.7.3",
@@ -29,9 +30,11 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
     "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
     "gulp-webdriver": "^4.0.0",
     "mocha": "^9.0.1",
     "serve-static": "^1.14.1",
+    "vinyl-buffer": "^1.0.1",
     "wdio-chromedriver-service": "^7.1.1",
     "webdriverio": "^7.4.4"
   }

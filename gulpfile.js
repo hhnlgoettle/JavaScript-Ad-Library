@@ -5,7 +5,10 @@ const connect = require('connect');
 const serveStatic = require('serve-static');
 const webdriver = require('gulp-webdriver');
 const { remote } = require('webdriverio');
-
+const browserify = require('browserify');
+var uglify = require('gulp-uglify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 let server;
 
 gulp.task('http:serve', (done) => {
@@ -33,6 +36,17 @@ gulp.task('e2e', () => {
     waitForTimeout: 10000,
     reporter: 'spec'
   }))
+});
+
+gulp.task('browserify', () => {
+  return browserify('src/index.js', {
+    standalone: "InteractionRewardingAds"
+  })
+    .bundle()
+    .pipe(source('release.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('build/'))
 });
 
 
