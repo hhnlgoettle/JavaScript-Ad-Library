@@ -6,9 +6,9 @@ const serveStatic = require('serve-static');
 const webdriver = require('gulp-webdriver');
 const { remote } = require('webdriverio');
 const browserify = require('browserify');
-var uglify = require('gulp-uglify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+const uglify = require('gulp-uglify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
 let server;
 
 gulp.task('http:serve', (done) => {
