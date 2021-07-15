@@ -56,7 +56,8 @@ describe('CloseWarningModal', function() {
           document.getElementById("ira-footer-close").click();
         });
       });
-    const result = await prom;
+    const tmp = await prom;
+    const result = JSON.parse(tmp);
 
     assert.strictEqual(true, result.hasOwnProperty("desiredDuration"));
     assert.strictEqual(true, result.hasOwnProperty("desiredInteractionCount"));

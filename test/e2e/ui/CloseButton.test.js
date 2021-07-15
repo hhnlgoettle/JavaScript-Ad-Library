@@ -15,7 +15,8 @@ describe('CloseButton', function() {
           document.getElementById("ira-btn-close").click();
         })
     });
-    const result = await prom;
+    const tmp = await prom;
+    const result = JSON.parse(tmp);
     assert.strictEqual(true, result != null);
     // check if its actually a stats object
     assert.strictEqual(0, result.desiredDuration);
@@ -36,7 +37,8 @@ describe('CloseButton', function() {
           document.getElementById("ira-btn-close").click();
         })
       });
-    const result = await prom;
+    const tmp = await prom;
+    const result = JSON.parse(tmp);
     assert.strictEqual(true, result != null);
     // check if its actually a stats object
     assert.strictEqual(0, result.desiredDuration);

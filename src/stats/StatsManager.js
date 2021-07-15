@@ -6,6 +6,7 @@ const StatsManager = class StatsManager {
    */
   constructor(manager) {
     this.manager = manager;
+    this.stats = null;
   }
 
   /**

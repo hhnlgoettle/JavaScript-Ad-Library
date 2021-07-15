@@ -9,7 +9,7 @@ describe('StatsManager Unit Test', function() {
       const manager = new InteractionRewardingAds();
       const stats = manager.stats;
       assert.strictEqual(manager, stats.manager);
-      assert.strictEqual(undefined, stats.stats)
+      assert.strictEqual(null, stats.stats)
     });
   });
 
