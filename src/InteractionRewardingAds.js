@@ -53,9 +53,8 @@ const InteractionRewardingAds = class InteractionRewardingAds {
   }
 
   close() {
-    const statsJSON = JSON.stringify(this.stats.getStats());
-    console.log({statsJSON})
-    this.api.onClose(statsJSON);
+    this.stats.getStats();
+    this.api.onClose(JSON.stringify(this.stats.getStats()));
   }
 
   closeOnError(error) {
