@@ -47,6 +47,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
   getAndroidApi() {
     try {
       this.api = AndroidIRA;
+      console.log("detected API: ", this.api)
     } catch (err) {
       console.error("android api not available");
     }
