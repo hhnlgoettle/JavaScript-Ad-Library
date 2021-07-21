@@ -47,10 +47,11 @@ const CountdownContainer = class CountdownContainer {
     elem.style.top = "2vh";
     elem.style.right = "2vw";
     elem.style.fontFamily = "'Open Sans',Arial,sans-serif";
-    elem.style.backgroundColor = "rgba(25, 25, 25, 0.05)"
-    elem.style.padding = "5px";
+    elem.style.backgroundColor = "rgba(200, 200, 200, 0.9)"
+    elem.style.padding = "2px 5px 2px 5px";
     elem.style.borderRadius = "10px";
     elem.style.lineHeight = "30px";
+    elem.style.zIndex = "100000";
   }
 };
 
