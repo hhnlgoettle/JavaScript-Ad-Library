@@ -1,18 +1,19 @@
-const {describe, it} = require('mocha');
+/* eslint-disable no-undef */
+const { describe, it } = require('mocha');
 const assert = require('assert');
 
-describe('InteractionRecorderOverlay', function() {
-  describe('#inject()', function() {
-    it('should record clicks on body', async function(done) {
+describe('InteractionRecorderOverlay', () => {
+  describe('#inject()', () => {
+    it('should record clicks on body', async () => {
       await browser.url('/');
       const result = await browser.execute(() => {
-          document.body.click();
-          return InteractionRewardingAds.recorder;
-        });
+        document.body.click();
+        return InteractionRewardingAds.recorder;
+      });
       assert.strictEqual(1, result.interactions.length);
     });
 
-    it('should record clicks on divs', async function(done) {
+    it('should record clicks on divs', async () => {
       await browser.url('/');
       const result = await browser.execute(() => {
         document.getElementById('valid-div').click();
@@ -24,4 +25,3 @@ describe('InteractionRecorderOverlay', function() {
     });
   });
 });
-

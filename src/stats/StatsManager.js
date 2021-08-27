@@ -1,5 +1,4 @@
 const StatsManager = class StatsManager {
-
   /**
    *
    * @param manager: InteractionRewardingAds
@@ -14,11 +13,11 @@ const StatsManager = class StatsManager {
    * @param {Number} desiredDuration - the minimum duration in MilliSeconds!
    * @param {Number} desiredInteractionCount
    */
-  initStatsObj({ desiredDuration = 0, desiredInteractionCount= 0 }) {
-    if(typeof desiredInteractionCount !== 'number') throw new Error("desiredInteractionCount is not a number");
-    if(typeof desiredDuration !== 'number') throw new Error("desiredDuration is not a number");
-    if(desiredInteractionCount < 0) throw new Error("desiredInteractionCount cannot be below zero");
-    if(desiredDuration < 0) throw new Error("desiredDuration cannot be below zero");
+  initStatsObj({ desiredDuration = 0, desiredInteractionCount = 0 }) {
+    if (typeof desiredInteractionCount !== 'number') throw new Error('desiredInteractionCount is not a number');
+    if (typeof desiredDuration !== 'number') throw new Error('desiredDuration is not a number');
+    if (desiredInteractionCount < 0) throw new Error('desiredInteractionCount cannot be below zero');
+    if (desiredDuration < 0) throw new Error('desiredDuration cannot be below zero');
     this.stats = {
       hasEarnedReward: false,
       duration: 0,
@@ -28,7 +27,7 @@ const StatsManager = class StatsManager {
       allInteractions: [],
       validInteractions: [],
       rewardPercentage: 0,
-    }
+    };
   }
 
   /**

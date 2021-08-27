@@ -1,3 +1,6 @@
+/* eslint-disable class-methods-use-this */
+const LiveReward = require('./livereward/LiveReward');
+
 const Timer = require('./timer/Timer');
 const StatsManager = require('./stats/StatsManager');
 const InteractionRecorder = require('./interaction/InteractionRecorder');
@@ -10,6 +13,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     this.timer = new Timer();
     this.stats = new StatsManager(this);
     this.recorder = new InteractionRecorder(this.timer);
+    this.liveReward = new LiveReward(this);
     this.ui = {
       clickOverlay: new InteractionRecorderOverlay(this.recorder),
       countdownContainer: new CountdownContainer(this),
@@ -24,11 +28,23 @@ const InteractionRewardingAds = class InteractionRewardingAds {
    * @param {Number} desiredInteractionCount - how many interactions are desired
    * @param {Boolean = false} autoStart - should the
    */
-  init({desiredDurationMillis, desiredInteractionCount, autoStart= true} = {}) {
-    this.stats.initStatsObj({desiredDuration: desiredDurationMillis, desiredInteractionCount});
+  init({ desiredDurationMillis, desiredInteractionCount, autoStart = true } = {}) {
+    this.stats.initStatsObj({ desiredDuration: desiredDurationMillis, desiredInteractionCount });
     this.getAndroidApi();
-    if(autoStart !== false) {
+    if (autoStart !== false) {
       this.start();
+    }
+  }
+
+  /**
+   * @description inits the LiveReward Object
+   * @param {Number} rewardAmount - the maximum amount the user will be
+   * rewarded through interactions
+   * @param {String} rewardType - the reward type the user will receive
+   */
+  initLiveReward({ rewardAmount, rewardType }) {
+    if (this.liveReward) {
+      this.liveReward.init({ rewardAmount, rewardType });
     }
   }
 
@@ -46,10 +62,11 @@ const InteractionRewardingAds = class InteractionRewardingAds {
 
   getAndroidApi() {
     try {
+      // eslint-disable-next-line no-undef
       this.api = AndroidIRA;
-      console.log("detected API: ", this.api)
+      console.log('detected API: ', this.api);
     } catch (err) {
-      console.error("android api not available");
+      console.error('android api not available');
     }
   }
 
@@ -67,6 +84,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
    * @param {MouseEvent} event
    */
   isValidEvent(event) {
+    // eslint-disable-next-line no-param-reassign
     event.isValid = true;
   }
 };

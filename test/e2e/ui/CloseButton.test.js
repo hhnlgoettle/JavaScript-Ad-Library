@@ -1,20 +1,17 @@
-const {describe, it} = require('mocha');
+/* eslint-disable no-undef */
+const { describe, it } = require('mocha');
 const assert = require('assert');
 
-
-describe('CloseButton', function() {
-  it('should close when timer is zero', async function(done) {
+describe('CloseButton', () => {
+  it('should close when timer is zero', async () => {
     await browser.url('/withMockedAndroidApi.html?desiredDurationMillis=0&autoStart=false');
-    const prom =
-      browser.execute(() => {
-        return new Promise((resolve) => {
-          InteractionRewardingAds.api.on("onClose", data => {
-            resolve(data);
-          });
-          InteractionRewardingAds.start();
-          document.getElementById("ira-btn-close").click();
-        })
-    });
+    const prom = browser.execute(() => new Promise((resolve) => {
+      InteractionRewardingAds.api.on('onClose', (data) => {
+        resolve(data);
+      });
+      InteractionRewardingAds.start();
+      document.getElementById('ira-btn-close').click();
+    }));
     const tmp = await prom;
     const result = JSON.parse(tmp);
     assert.strictEqual(true, result != null);
@@ -25,18 +22,15 @@ describe('CloseButton', function() {
     assert.strictEqual(true, result.hasEarnedReward);
   });
 
-  it('should show a popup when timer is not zero', async function(done) {
+  it('should show a popup when timer is not zero', async () => {
     await browser.url('/withMockedAndroidApi.html?desiredDurationMillis=0&autoStart=false');
-    const prom =
-      browser.execute(() => {
-        return new Promise((resolve) => {
-          InteractionRewardingAds.api.on("onClose", data => {
-            resolve(data);
-          });
-          InteractionRewardingAds.start();
-          document.getElementById("ira-btn-close").click();
-        })
+    const prom = browser.execute(() => new Promise((resolve) => {
+      InteractionRewardingAds.api.on('onClose', (data) => {
+        resolve(data);
       });
+      InteractionRewardingAds.start();
+      document.getElementById('ira-btn-close').click();
+    }));
     const tmp = await prom;
     const result = JSON.parse(tmp);
     assert.strictEqual(true, result != null);
@@ -47,4 +41,3 @@ describe('CloseButton', function() {
     assert.strictEqual(true, result.hasEarnedReward);
   });
 });
-
