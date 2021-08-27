@@ -23,7 +23,7 @@ const LiveReward = class LiveReward {
    * rewarded through interactions
    * @param {String} rewardType - the reward type the user will receive
    */
-  init({ rewardAmount, rewardType }) {
+  init({ rewardAmount = this.rewardAmount, rewardType = this.rewardType }) {
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(rewardAmount)) throw Error('rewardAmount has to be valid number');
     if (rewardAmount <= 0) throw Error('rewardAmount can only be positive');

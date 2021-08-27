@@ -57,7 +57,11 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     this.ui.clickOverlay.inject();
     this.ui.countdownContainer.inject();
     this.ui.modal.inject();
-    this.api.onStart();
+    try {
+      this.api.onStart();
+    } catch (err) {
+      console.error({ err });
+    }
   }
 
   getAndroidApi() {
