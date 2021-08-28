@@ -1,7 +1,17 @@
+const Stats = require('./Stats');
+
+/**
+ * @module
+ * @class StatsManager
+ * @type {StatsManager}
+ * @description manages the stats of the impression
+ * @property {InteractionRewardingAds.js} manager the Parent
+ * @property {Stats} stats the Parent
+ * Object that holds refs to all other objects
+ */
 const StatsManager = class StatsManager {
   /**
-   *
-   * @param manager: InteractionRewardingAds
+   * @param {InteractionRewardingAds.js} manager InteractionRewardingAds
    */
   constructor(manager) {
     this.manager = manager;
@@ -9,7 +19,7 @@ const StatsManager = class StatsManager {
   }
 
   /**
-   * inits the stats object
+   * @description inits the stats object
    * @param {Number} desiredDuration - the minimum duration in MilliSeconds!
    * @param {Number} desiredInteractionCount
    */
@@ -18,20 +28,11 @@ const StatsManager = class StatsManager {
     if (typeof desiredDuration !== 'number') throw new Error('desiredDuration is not a number');
     if (desiredInteractionCount < 0) throw new Error('desiredInteractionCount cannot be below zero');
     if (desiredDuration < 0) throw new Error('desiredDuration cannot be below zero');
-    this.stats = {
-      hasEarnedReward: false,
-      duration: 0,
-      desiredDuration: Math.round(desiredDuration),
-      interactionCount: 0,
-      desiredInteractionCount: Math.round(desiredInteractionCount),
-      allInteractions: [],
-      validInteractions: [],
-      rewardPercentage: 0,
-    };
+    this.stats = new Stats({ desiredDuration, desiredInteractionCount });
   }
 
   /**
-   * builds the stats object
+   * @description builds the stats object
    */
   buildStats() {
     if (this.stats == null) this.initStatsObj({});
@@ -44,8 +45,11 @@ const StatsManager = class StatsManager {
   }
 
   /**
-   * returns the reward percentage in a number between 0 and 100
-   * @return {number}
+   * @description returns the reward percentage in a number between 0 and 100
+   * <p> returns 0 when this.stats.desiredInteractionCount is less or equal to 0 </p>
+   * <p> return 100 when this.stats.interactionCount is equal or greater
+   * than this.stats.desiredInteractionCount</p>
+   * @return {number} the reward percentage
    */
   getRewardPercentage() {
     if (this.stats.desiredInteractionCount <= 0) return 0;
@@ -54,17 +58,8 @@ const StatsManager = class StatsManager {
   }
 
   /**
-   * returns the stats
-   * @return {{
-   * duration: number,
-   * desiredInteractionCount: number,
-   * desiredDuration: number,
-   * hasEarnedReward: boolean,
-   * allInteractions: [],
-   * interactionCount: number,
-   * rewardPercentage: number,
-   * validInteractions: []
-   * }}
+   * @description builds and returns the stats of the impression
+   * @returns {Stats} the stats object
    */
   getStats() {
     this.buildStats();

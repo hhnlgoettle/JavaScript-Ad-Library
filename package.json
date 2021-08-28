@@ -11,7 +11,8 @@
     "build": "gulp browserify",
     "build:api": "browserify -e androidApi/AndroidIRA.js --s AndroidIRA -o androidApi/build/androidIRA.js",
     "lint": "./node_modules/.bin/eslint src/",
-    "deploy": "rsync -aP build/ ira@trustmeimansoftware.engineer:/home/ira/cdn/www/ira/"
+    "deploy": "rsync -aP build/ ira@trustmeimansoftware.engineer:/home/ira/cdn/www/ira/",
+    "docs": "jsdoc -c ./jsdoc.conf.js"
   },
   "author": "Luca Göttle <lgoettle@stud.hs-heilbronn.de>",
   "license": "MIT",
