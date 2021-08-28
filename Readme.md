@@ -6,6 +6,9 @@ The purpose of this library is to be included in a HTML5-Ad (or "creative").
 This library keeps track of interactions by the user with the ad. 
 These interactions are then reported to the Ad Library at the end of the ads lifecycle.
 
+## Documentation
+For documentation see [here](http://docs/index.html)
+
 ## Requirements
 
 - Clone the repo
