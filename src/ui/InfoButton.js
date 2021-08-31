@@ -51,7 +51,7 @@ const InfoButton = class InfoButton {
     elem.id = 'ira-info-btn';
     // information icon in unicode
     // https://stackoverflow.com/questions/33878539/is-there-an-html-entity-for-an-info-icon/33878646#33878646
-    elem.innerHTML = '&#x1F6C8';
+    elem.innerHTML = '&#9432';
     elem.onclick = this.onInfoButtonClick;
     this.styleInfoButton(elem);
     return elem;
@@ -155,7 +155,7 @@ const InfoButton = class InfoButton {
 
     elem.style.padding = '5px 15px';
     elem.style.color = 'darkgrey';
-    elem.style.fontWeight = 'lighter';
+    elem.style.fontWeight = 'normal';
     elem.style.fontSize = '1.2em';
   }
 };
