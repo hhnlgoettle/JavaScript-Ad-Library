@@ -14,6 +14,7 @@ const InteractionRecorder = require('./interaction/InteractionRecorder');
 const InteractionRecorderOverlay = require('./ui/InteractionRecorderOverlay');
 const CloseWarningModal = require('./ui/CloseWarningModal');
 const CountdownContainer = require('./ui/CountdownContainer');
+const InfoButton = require('./ui/InfoButton');
 
 const InteractionRewardingAds = class InteractionRewardingAds {
   /**
@@ -28,6 +29,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
       clickOverlay: new InteractionRecorderOverlay(this.recorder),
       countdownContainer: new CountdownContainer(this),
       modal: new CloseWarningModal(this),
+      infoButton: new InfoButton(),
     };
     this.api = null;
   }
@@ -68,6 +70,7 @@ const InteractionRewardingAds = class InteractionRewardingAds {
     this.ui.clickOverlay.inject();
     this.ui.countdownContainer.inject();
     this.ui.modal.inject();
+    this.ui.infoButton.inject();
     try {
       this.api.onStart();
     } catch (err) {
