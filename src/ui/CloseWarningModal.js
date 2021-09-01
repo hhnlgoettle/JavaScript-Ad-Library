@@ -167,10 +167,11 @@ const CloseWarningModal = class CloseWarningModal {
     opt.style.fontWeight = 'bold';
     opt.style.textTransform = 'uppercase';
     opt.style.textDecoration = 'none';
-    opt.style.padding = '0 1.5em';
     opt.style.lineHeight = '40px';
     opt.style.margin = '0';
+    opt.style.marginRight = '1em';
     opt.style.color = 'white';
+    opt.style.fontSize = '0.9em';
   }
 
   /**
