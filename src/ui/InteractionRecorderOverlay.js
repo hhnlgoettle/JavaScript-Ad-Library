@@ -25,7 +25,7 @@ const InteractionRecorderOverlay = class InteractionRecorderOverlay {
     try {
       document.addEventListener('click', (data) => {
         const interaction = {};
-        interaction.target = JSON.stringify(data.target);
+        interaction.target = data.target;
         interaction.posX = data.x;
         interaction.posY = data.y;
         interaction.isValid = data.isValid;
