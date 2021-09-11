@@ -26,9 +26,22 @@ const InteractionRecorder = class InteractionRecorder {
   recordInteraction({
     posX, posY, target, isValid = false,
   }) {
+    let myTarget = '';
+    try {
+      if (target instanceof Object) {
+        myTarget = target.id;
+        if (myTarget.length === 0) {
+          myTarget = JSON.stringify({ nodeName: target.nodeName });
+        }
+      } else if (target instanceof String) {
+        myTarget = target;
+      }
+    } catch (e) {
+      // ignore error
+    }
     const timestamp = this.timer.getPassedTime();
     this.interactions.push({
-      timestamp, posX, posY, target, isValid,
+      timestamp, posX, posY, target: myTarget, isValid,
     });
   }
 
