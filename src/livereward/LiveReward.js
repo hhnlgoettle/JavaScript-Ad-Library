@@ -49,11 +49,10 @@ const LiveReward = class LiveReward {
    * @return {number} Number between 0 and 100
    */
   getCurrentRewardPercentage() {
-    const { desiredInteractionCount, interactionCount } = this.manager.stats.stats;
+    const { desiredInteractionCount } = this.manager.stats.stats;
     const validInteractionCount = this.manager.recorder.getValidInteractions().length;
     if (desiredInteractionCount <= 0) return 0;
-    if (interactionCount >= desiredInteractionCount) return 100;
-    return Math.round(100 * (validInteractionCount / desiredInteractionCount));
+    return Math.min(100, Math.round(100 * (validInteractionCount / desiredInteractionCount)));
   }
 
   /**
